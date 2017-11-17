@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:with="curPage=${'xiaoxiao'}">
+    <h3>当前页码：<span th:text="${curPage}">第一页</span></h3>
+</div>
+
+<div th:with="urll=${url}">
+    <span th:utext="${urll}">html替换</span>
+</div>
+</body>
+</html>

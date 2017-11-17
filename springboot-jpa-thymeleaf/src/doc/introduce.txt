@@ -112,5 +112,8 @@ thymeleaf介绍：
                 <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>
 
                 <p  th:text="${#strings.randomAlphanumeric(16)}">随机字母数字</p>
-          （9）、
+          （9）、定义变量 变量赋值
+                <div th:with="curPage=${'xiaoxiao'}">
+                    <h3>当前页码：<span th:text="${curPage}">第一页</span></h3>
+                </div>
 
