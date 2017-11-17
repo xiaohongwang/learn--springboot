@@ -76,7 +76,6 @@
             <artifactId>spring-data-commons</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>multidatasource1</finalName>
         <plugins>
