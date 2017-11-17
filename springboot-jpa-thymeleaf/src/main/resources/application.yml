@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql:///springboottest2
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html

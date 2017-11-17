@@ -1,0 +1,22 @@
+server:
+  port: 8093
+  context-path: /
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    prefix: classpath:/pages/
+    cache: false
+datasource1:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboottest
+  username: root
+  password: root
+  type: com.zaxxer.hikari.HikariDataSource
+datasource2:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboottest2
+  username: root
+  password: root
+  type: com.zaxxer.hikari.HikariDataSource
+

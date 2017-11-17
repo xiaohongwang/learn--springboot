@@ -1,0 +1,17 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>变量表达式</title>
+</head>
+<body>
+<p th:text="'Hello !' + ${userName}">欢迎您！！</p>
+
+<p th:text="|Hello ! ${userName}|">欢迎您！！</p>
+
+<p th:text="'根据您的年龄，判断你是一位' + ((${age} >= 18) ? '成年人' : '未成年人')">年龄判断</p>
+
+<p th:text="'10年后，你的年龄是' + ${age + 10} + '。' + (${age + 10} > 50 ? '您已经年过半百了，哈哈哈哈' : '')">10年后</p>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+thymeleaf介绍：
+    1.Thymeleaf 在有网络和无网络的环境下皆可运行，即它可以让美工在浏览器查看页面的静态效果，
+    也可以让程序员在服务器查看带数据的动态页面效果。这是由于它支持 html 原型，然后在 html 标签
+    里增加额外的属性来达到模板+数据的展示方式。浏览器解释 html 时会忽略未定义的标签属性，
+    所以 thymeleaf 的模板可以静态地运行；当有数据返回到页面时，Thymeleaf 标签会动态地替换掉静态内容，使页面动态显示。
+
+    2.Thymeleaf 开箱即用的特性。它提供标准和spring标准两种方言，可以直接套用模板实现JSTL、
+    OGNL表达式效果，避免每天套模板、该jstl、改标签的困扰。同时开发人员也可以扩展和创建自定义的方言。
+
+    3.Thymeleaf 提供spring标准方言和一个与 SpringMVC 完美集成的可选模块，可以快速的实现表单绑定、
+    属性编辑器、国际化等功能。
+
+
+
+（1）改写html标签：<html lang="en" xmlns:th="http://www.thymeleaf.org">
+（2）、变量表达式
+    获取变量值使用$   ,其中th:text的内容将替换p标签的内容，p标签中的内容只是前端开发用于展示的
+    <p th:text="'Hello ! ' + ${userName}">欢迎您！！</p>
+
+    使用|..|形式，其中智能使用变量表达式，不能包含常量，条件表达式
+    <p th:text="|Hello ! ${userName}|">欢迎您！！</p>
+
+    表达式中可以使用各类算术运算符，例如+, -, *, /, %
+    逻辑运算符> (gt), < (lt), <= (le),>= (ge)，== (eq),!= (ne)都可以使用
+    <p th:text="'根据您的年龄，判断你是一位' + ((${age} >= 18) ? '成年人' : '未成年人')">年龄判断</p>
+
+    <p th:text="'10年后，你的年龄是' + ${age + 10} + '。' + (${age + 10} > 50 ? '您已经年过半百了，哈哈哈哈' : '')">10年后</p>
+（3）、选择（星号）表达式
+        选择表达式很像变量表达式，不过它们用一个预先选择的对象来代替上下文变量容器(map)来执行
+    被指定的object由th:object属性定义：
+       <div th:object="${user}">
+           <span th:text="*{id}">ID</span>   <!--<span th:text="*{user.id}">ID</span>-->
+           <span th:text="*{userName}">userName</span>   <!--<span th:text="*{user.userName}">userName</span>-->
+           <span th:text="*{age}">age</span>   <!--<span th:text="*{user.age}">age</span>-->
+       </div>
+   （4）、URL表达式
+        URL的处理通过语法th:href = "@{}"来处理，相似的标签  th:href和th:src
+        <a th:href="@{/user/list}"  href="../user/list.html" th:text="查询用户列表">URL表达式</a>
+
+        URL还可以传递参数
+        <a th:href="@{/user/toEdit(id=9)}"  href="../user/edit.html" th:text="编辑用户信息">编辑</a>
+
+        传递多个参数间使用,进行分割
+        <a th:href="@{/user/toFindUser(id=10,userName='xiaoxiao')}"  href="./asterisk.html" th:text="查询用户信息">用户信息</a>
+      （5）、条件判断表达式
+            th:if={}   条件成立，内容显示
+            th:unless={}  条件不成立，内容显示
+
+        <div th:object="${user1}" th:unless="${user1} == null">
+            <span th:text="*{id}">ID</span> <!--<span th:text="*{user.id}">ID</span>-->
+        </div>
+
+        <div th:object="${user2}" th:if="${user2} != null">
+            <span th:text="${user2.id}">ID</span>
+        </div>
+
+        th:if="${user} != null and ${user.userName} != null"   二元运算符（Binary operators）:and, or
+        th:if=" not (${user} == null or ${user.userName} == null)"  布尔否定（一元运算符）Boolean negation (unary operator):!, not
+
+       <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>    (if) ? (then) : (else)
+
+       （6）、switch
+               默认属性default可以用*表示：
+             <div th:switch="${user.userName}">
+                    <p th:case="'xiaoxiao'" th:text="'小小本人'">条件匹配</p>
+                    <p th:case="*" th:text="'信息不匹配'">其他情况</p>
+                </div>
+        （7）、循环
+            <tr  th:each="user : ${users}">
+                <th scope="row" th:text="${user.id}">1</th>
+                <td th:text="${user.userName}">neo</td>
+                <td th:text="${user.age}">6</td>
+            </tr>
+
+            <tr  th:each="user : ${users}" th:object="${user}">
+                <th scope="row" th:text="*{id}">1</th>
+                <td th:text="*{userName}">neo</td>
+                <td th:text="*{age}">6</td>
+            </tr>
+
+             <tr  th:each="user,iterStat:${users}" th:object="${user}">
+                <th th:text="${iterStat.index}">index</th>
+                <th th:text="${iterStat.count}">count</th>
+                <th th:text="${iterStat.size}">size</th>
+                <th scope="row" th:text="*{id}">1</th>
+                <td th:text="*{userName}">neo</td>
+
+            </tr>
+            iterStat称作状态变量，属性有：
+
+                index:当前迭代对象的index（从0开始计算）
+                count: 当前迭代对象的index(从1开始计算)
+                size:被迭代对象的大小
+                current:当前迭代变量
+                even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）
+                first:布尔值，当前循环是否是第一个
+                last:布尔值，当前循环是否是最后一个
+
+         （8）、Utilities
+                Thymeleaf还提供了一系列Utility对象（内置于Context中），可以通过#直接访问
+
+                <p th:text="${#dates.format(#dates.createToday(),'dd/MM/yyyy HH:mm')}">今日</p>
+
+                <p th:text="${#dates.format(#dates.createNow(),'dd/MM/yyyy HH:mm')}">当时</p>
+
+                <p th:if="${nowTime } != null" th:text="${#dates.format(nowTime,'dd/MM/yyyy HH:mm')}">特定时间</p>
+
+                <p th:if="${ name != null and ! #strings.isEmpty(name)}" th:text="${name}">姓名不为空</p>
+
+                <p th:if="${name}  != null " th:text="${#strings.length(name)}">姓名长度</p>
+
+                <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>
+
+                <p  th:text="${#strings.randomAlphanumeric(16)}">随机字母数字</p>
+          （9）、
+

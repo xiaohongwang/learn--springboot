@@ -1,0 +1,10 @@
+datasource1:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboottest
+  username: root
+  password: root
+datasource2:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboottest2
+  username: root
+  password: root

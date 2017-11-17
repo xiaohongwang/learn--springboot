@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>选择(星号)表达式</title>
+</head>
+<body>
+
+<div th:object="${user}" th:unless="${user} == null">
+    <span th:text="*{id}">ID</span> <!--<span th:text="*{user.id}">ID</span>-->
+    <span th:text="*{userName}">userName</span> <!--<span th:text="*{user.userName}">userName</span>-->
+    <span th:text="*{age}">age</span> <!--<span th:text="*{user.age}">age</span>-->
+</div>
+
+
+<div th:object="${user1}" th:unless="${user1} == null">
+    <span th:text="*{id}">ID</span> <!--<span th:text="*{user.id}">ID</span>-->
+    <span th:text="*{userName}">userName</span> <!--<span th:text="*{user.userName}">userName</span>-->
+    <span th:text="*{age}">age</span> <!--<span th:text="*{user.age}">age</span>-->
+</div>
+
+<div th:object="${user2}" th:if="${user2} != null">
+    <span th:text="${user2.id}">ID</span>
+    <span th:text="${user2.userName}">userName</span>
+    <span th:text="${user2.age}">age</span>
+</div>
+
+</body>
+</html>

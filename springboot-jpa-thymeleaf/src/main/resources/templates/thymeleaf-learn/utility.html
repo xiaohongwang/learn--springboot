@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Utility</title>
+</head>
+<body>
+<p th:text="${#dates.format(#dates.createToday(),'dd/MM/yyyy HH:mm')}">今日</p>
+
+<p th:text="${#dates.format(#dates.createNow(),'dd/MM/yyyy HH:mm')}">当时</p>
+
+<p th:if="${nowTime } != null" th:text="${#dates.format(nowTime,'dd/MM/yyyy HH:mm')}">特定时间</p>
+
+<p th:if="${ name != null and ! #strings.isEmpty(name)}" th:text="${name}">姓名不为空</p>
+
+<p th:if="${name}  != null " th:text="${#strings.length(name)}">姓名长度</p>
+
+<p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>
+
+<p  th:text="${#strings.randomAlphanumeric(16)}">随机字母数字</p>
+</body>
+</html>

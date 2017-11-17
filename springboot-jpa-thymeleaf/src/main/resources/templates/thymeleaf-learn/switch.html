@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Switch</title>
+</head>
+<body>
+    <div th:switch="${user.userName}" th:if="${user} != null and ${user.userName} != null">
+        <p th:case="'xiaoxiao'" th:text="'小小本人'">条件匹配</p>
+        <p th:case="*" th:text="'信息不匹配'">其他情况</p>
+    </div>
+
+    <div th:switch="${user.userName}" th:if=" not (${user} == null or ${user.userName} == null)">
+        <p th:case="'xiaoxiao'" th:text="'小小本人'">条件匹配</p>
+        <p th:case="*" th:text="'信息不匹配'">其他情况</p>
+    </div>
+</body>
+</html>

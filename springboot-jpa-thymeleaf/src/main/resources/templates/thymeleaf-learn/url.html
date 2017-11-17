@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>URL表达式</title>
+</head>
+<body>
+    <a th:href="@{/user/list}"  href="../user/list.html" th:text="查询用户列表">URL表达式</a>
+
+    <a th:href="@{/user/toEdit(id=9)}"  href="../user/edit.html" th:text="编辑用户信息">编辑</a>
+
+    <a th:href="@{/user/toFindUser(id=10,userName='xiaoxiao')}"  href="./asterisk.html" th:text="查询用户信息">用户信息</a>
+</body>
+</html>
