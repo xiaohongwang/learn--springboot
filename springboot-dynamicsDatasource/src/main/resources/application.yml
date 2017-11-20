@@ -1,0 +1,23 @@
+server:
+  port: 8093
+  context-path: /
+datasource1:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboottest
+  username: root
+  password: root
+  type: com.zaxxer.hikari.HikariDataSource
+datasource2:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql:///springboot
+  username: root
+  password: root
+  type: com.zaxxer.hikari.HikariDataSource
+spring:
+  jpa:
+    database: mysql
+    show-sql: true
+
+
+
+
