@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>布局</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script th:src="@{//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!-- 通过 tag名称 引用 -->
+<header th:replace="thymeleaf-learn/common/top_header :: header"></header>
+
+<!--<div th:insert="thymeleaf-learn/common/footer :: copy">aaa</div>-->
+
+<!--<div th:replace="thymeleaf-learn/common/footer :: copy">aaa</div>-->
+
+</body>
+</html>
