@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>内联</title>
+    <script th:inline="javascript">
+        /*[+
+            var username = [[${userName}]];
+            alert(username);
+            var age = '18';
+             alert(username);
+         +]*/
+
+        /*[-*/
+         var age = '18';
+         alert(age);
+         alert(username);
+         /*-]*/
+
+    </script>
+</head>
+<body>
+    <span th:inline="text">
+        这是一个内联测试页面，测试员是[[${userName}]];
+    </span>
+</body>
+</html>

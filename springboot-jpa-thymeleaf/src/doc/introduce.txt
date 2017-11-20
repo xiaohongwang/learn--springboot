@@ -42,6 +42,11 @@ thymeleaf介绍：
 
         传递多个参数间使用,进行分割
         <a th:href="@{/user/toFindUser(id=10,userName='xiaoxiao')}"  href="./asterisk.html" th:text="查询用户信息">用户信息</a>
+
+        设置背景
+        <div th:style="'background:url(' + @{/image/background.jpg} + ');'"></div>
+
+        @{...}表达式中可以通过{type}访问Context中的type变量
       （5）、条件判断表达式
             th:if={}   条件成立，内容显示
             th:unless={}  条件不成立，内容显示
@@ -98,7 +103,18 @@ thymeleaf介绍：
 
          （8）、Utilities
                 Thymeleaf还提供了一系列Utility对象（内置于Context中），可以通过#直接访问
+                dates ： java.util.Date的功能方法类。
+                calendars : 类似#dates，面向java.util.Calendar
+                numbers : 格式化数字的功能方法类
+                strings : 字符串对象的功能类，contains,startWiths,prepending/appending等等。
+                objects: 对objects的功能类操作。
+                bools: 对布尔值求值的功能方法。
+                arrays：对数组的功能类方法。
+                lists: 对lists功能类方法
+                sets
+                maps
 
+                示例：
                 <p th:text="${#dates.format(#dates.createToday(),'dd/MM/yyyy HH:mm')}">今日</p>
 
                 <p th:text="${#dates.format(#dates.createNow(),'dd/MM/yyyy HH:mm')}">当时</p>
@@ -116,4 +132,56 @@ thymeleaf介绍：
                 <div th:with="curPage=${'xiaoxiao'}">
                     <h3>当前页码：<span th:text="${curPage}">第一页</span></h3>
                 </div>
+           （10）、内联
+                使用th:inline="text/javascript/none"
+                  <span th:inline="text">
+                        这是一个内联测试页面，测试员是[[${userName}]];
+                  </span>
+
+                js内联代码中需要加入/*<![CDATA[*/    ......    /*]]>*/代码块，
+                thymeleaf才能正确解析一些运算符(<等)和操作符号&/&&等。
+               <script th:inline="javascript">
+                      var username = [[${userName}]];
+                      alert(username);
+                      var age = '18';
+                      /*<![CDATA[*/
+                          alert(age < 20);
+                      /*]]>*/
+               </script>
+
+                另外,javascript内联时有以下两个特性：
+                 <script th:inline="javascript">
+                        /*附加代码  working*/
+                        /*[+
+                            var username = [[${userName}]];
+                            alert(username);
+                            var age = '18';
+                             alert(username);
+                         +]*/
+                        /*移除代码  non-working*/
+                        /*[-*/
+                         var age = '18';
+                         alert(age);
+                         alert(username);
+                         /*-]*/
+
+                 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
