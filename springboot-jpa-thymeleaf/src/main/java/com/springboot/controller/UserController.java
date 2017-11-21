@@ -7,6 +7,7 @@ import org.springframework.context.Lifecycle;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,5 +75,13 @@ public class UserController {
         user = userService.findUserByUserName(userName);
         model.addAttribute("user2", user);
         return "/thymeleaf-learn/asterisk";
+    }
+
+    @RequestMapping("/findUser")
+    public String toEditByUserName(Model model){
+        User user = new User();
+        user = userService.findUserById(10);
+        model.addAttribute("user",user);
+        return "/user/userInfo";
     }
 }

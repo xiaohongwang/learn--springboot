@@ -47,107 +47,108 @@ thymeleaf介绍：
         <div th:style="'background:url(' + @{/image/background.jpg} + ');'"></div>
 
         @{...}表达式中可以通过{type}访问Context中的type变量
-      （5）、条件判断表达式
-            th:if={}   条件成立，内容显示
-            th:unless={}  条件不成立，内容显示
+        <a  th:href="@{/user/{type}(type=${type})}"  href="../user/userInfo.html" th:text="查询特定用户信息">特定用户信息</a>
+  （5）、条件判断表达式
+        th:if={}   条件成立，内容显示
+        th:unless={}  条件不成立，内容显示
 
-        <div th:object="${user1}" th:unless="${user1} == null">
-            <span th:text="*{id}">ID</span> <!--<span th:text="*{user.id}">ID</span>-->
-        </div>
+    <div th:object="${user1}" th:unless="${user1} == null">
+        <span th:text="*{id}">ID</span> <!--<span th:text="*{user.id}">ID</span>-->
+    </div>
 
-        <div th:object="${user2}" th:if="${user2} != null">
-            <span th:text="${user2.id}">ID</span>
-        </div>
+    <div th:object="${user2}" th:if="${user2} != null">
+        <span th:text="${user2.id}">ID</span>
+    </div>
 
-        th:if="${user} != null and ${user.userName} != null"   二元运算符（Binary operators）:and, or
-        th:if=" not (${user} == null or ${user.userName} == null)"  布尔否定（一元运算符）Boolean negation (unary operator):!, not
+    th:if="${user} != null and ${user.userName} != null"   二元运算符（Binary operators）:and, or
+    th:if=" not (${user} == null or ${user.userName} == null)"  布尔否定（一元运算符）Boolean negation (unary operator):!, not
 
-       <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>    (if) ? (then) : (else)
+   <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>    (if) ? (then) : (else)
 
-       （6）、switch
-               默认属性default可以用*表示：
-             <div th:switch="${user.userName}">
-                    <p th:case="'xiaoxiao'" th:text="'小小本人'">条件匹配</p>
-                    <p th:case="*" th:text="'信息不匹配'">其他情况</p>
-                </div>
-        （7）、循环
-            <tr  th:each="user : ${users}">
-                <th scope="row" th:text="${user.id}">1</th>
-                <td th:text="${user.userName}">neo</td>
-                <td th:text="${user.age}">6</td>
-            </tr>
+   （6）、switch
+           默认属性default可以用*表示：
+         <div th:switch="${user.userName}">
+                <p th:case="'xiaoxiao'" th:text="'小小本人'">条件匹配</p>
+                <p th:case="*" th:text="'信息不匹配'">其他情况</p>
+            </div>
+    （7）、循环
+        <tr  th:each="user : ${users}">
+            <th scope="row" th:text="${user.id}">1</th>
+            <td th:text="${user.userName}">neo</td>
+            <td th:text="${user.age}">6</td>
+        </tr>
 
-            <tr  th:each="user : ${users}" th:object="${user}">
-                <th scope="row" th:text="*{id}">1</th>
-                <td th:text="*{userName}">neo</td>
-                <td th:text="*{age}">6</td>
-            </tr>
+        <tr  th:each="user : ${users}" th:object="${user}">
+            <th scope="row" th:text="*{id}">1</th>
+            <td th:text="*{userName}">neo</td>
+            <td th:text="*{age}">6</td>
+        </tr>
 
-             <tr  th:each="user,iterStat:${users}" th:object="${user}">
-                <th th:text="${iterStat.index}">index</th>
-                <th th:text="${iterStat.count}">count</th>
-                <th th:text="${iterStat.size}">size</th>
-                <th scope="row" th:text="*{id}">1</th>
-                <td th:text="*{userName}">neo</td>
+         <tr  th:each="user,iterStat:${users}" th:object="${user}">
+            <th th:text="${iterStat.index}">index</th>
+            <th th:text="${iterStat.count}">count</th>
+            <th th:text="${iterStat.size}">size</th>
+            <th scope="row" th:text="*{id}">1</th>
+            <td th:text="*{userName}">neo</td>
 
-            </tr>
-            iterStat称作状态变量，属性有：
+        </tr>
+        iterStat称作状态变量，属性有：
 
-                index:当前迭代对象的index（从0开始计算）
-                count: 当前迭代对象的index(从1开始计算)
-                size:被迭代对象的大小
-                current:当前迭代变量
-                even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）
-                first:布尔值，当前循环是否是第一个
-                last:布尔值，当前循环是否是最后一个
+            index:当前迭代对象的index（从0开始计算）
+            count: 当前迭代对象的index(从1开始计算)
+            size:被迭代对象的大小
+            current:当前迭代变量
+            even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）
+            first:布尔值，当前循环是否是第一个
+            last:布尔值，当前循环是否是最后一个
 
-         （8）、Utilities
-                Thymeleaf还提供了一系列Utility对象（内置于Context中），可以通过#直接访问
-                dates ： java.util.Date的功能方法类。
-                calendars : 类似#dates，面向java.util.Calendar
-                numbers : 格式化数字的功能方法类
-                strings : 字符串对象的功能类，contains,startWiths,prepending/appending等等。
-                objects: 对objects的功能类操作。
-                bools: 对布尔值求值的功能方法。
-                arrays：对数组的功能类方法。
-                lists: 对lists功能类方法
-                sets
-                maps
+     （8）、Utilities
+            Thymeleaf还提供了一系列Utility对象（内置于Context中），可以通过#直接访问
+            dates ： java.util.Date的功能方法类。
+            calendars : 类似#dates，面向java.util.Calendar
+            numbers : 格式化数字的功能方法类
+            strings : 字符串对象的功能类，contains,startWiths,prepending/appending等等。
+            objects: 对objects的功能类操作。
+            bools: 对布尔值求值的功能方法。
+            arrays：对数组的功能类方法。
+            lists: 对lists功能类方法
+            sets
+            maps
 
-                示例：
-                <p th:text="${#dates.format(#dates.createToday(),'dd/MM/yyyy HH:mm')}">今日</p>
+            示例：
+            <p th:text="${#dates.format(#dates.createToday(),'dd/MM/yyyy HH:mm')}">今日</p>
 
-                <p th:text="${#dates.format(#dates.createNow(),'dd/MM/yyyy HH:mm')}">当时</p>
+            <p th:text="${#dates.format(#dates.createNow(),'dd/MM/yyyy HH:mm')}">当时</p>
 
-                <p th:if="${nowTime } != null" th:text="${#dates.format(nowTime,'dd/MM/yyyy HH:mm')}">特定时间</p>
+            <p th:if="${nowTime } != null" th:text="${#dates.format(nowTime,'dd/MM/yyyy HH:mm')}">特定时间</p>
 
-                <p th:if="${ name != null and ! #strings.isEmpty(name)}" th:text="${name}">姓名不为空</p>
+            <p th:if="${ name != null and ! #strings.isEmpty(name)}" th:text="${name}">姓名不为空</p>
 
-                <p th:if="${name}  != null " th:text="${#strings.length(name)}">姓名长度</p>
+            <p th:if="${name}  != null " th:text="${#strings.length(name)}">姓名长度</p>
 
-                <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>
+            <p th:if="${name } != null" th:text="${#strings.equals(name,'xiaoxiao')} ? '正确':'错误'">姓名</p>
 
-                <p  th:text="${#strings.randomAlphanumeric(16)}">随机字母数字</p>
+            <p  th:text="${#strings.randomAlphanumeric(16)}">随机字母数字</p>
           （9）、定义变量 变量赋值
                 <div th:with="curPage=${'xiaoxiao'}">
                     <h3>当前页码：<span th:text="${curPage}">第一页</span></h3>
                 </div>
-           （10）、内联
-                使用th:inline="text/javascript/none"
-                  <span th:inline="text">
-                        这是一个内联测试页面，测试员是[[${userName}]];
-                  </span>
+       （10）、内联
+            使用th:inline="text/javascript/none"
+              <span th:inline="text">
+                    这是一个内联测试页面，测试员是[[${userName}]];
+              </span>
 
-                js内联代码中需要加入/*<![CDATA[*/    ......    /*]]>*/代码块，
-                thymeleaf才能正确解析一些运算符(<等)和操作符号&/&&等。
-               <script th:inline="javascript">
-                      var username = [[${userName}]];
-                      alert(username);
-                      var age = '18';
-                      /*<![CDATA[*/
-                          alert(age < 20);
-                      /*]]>*/
-               </script>
+            js内联代码中需要加入/*<![CDATA[*/    ......    /*]]>*/代码块，
+            thymeleaf才能正确解析一些运算符(<等)和操作符号&/&&等。
+           <script th:inline="javascript">
+                  var username = [[${userName}]];
+                  alert(username);
+                  var age = '18';
+                  /*<![CDATA[*/
+                      alert(age < 20);
+                  /*]]>*/
+           </script>
 
                 另外,javascript内联时有以下两个特性：
                  <script th:inline="javascript">

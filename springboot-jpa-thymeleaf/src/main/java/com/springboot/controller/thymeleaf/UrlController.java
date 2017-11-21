@@ -2,6 +2,7 @@ package com.springboot.controller.thymeleaf;
 
 import org.codehaus.groovy.runtime.StringGroovyMethods;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UrlController {
 
     @RequestMapping("/test")
-    public String url(){
+    public String url(Model model){
+       model.addAttribute("type","findUser");
         return "/thymeleaf-learn/url";
     }
 }

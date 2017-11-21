@@ -12,7 +12,7 @@
 
         <a th:href="@{/user/toFindUser(id=10,userName='xiaoxiao')}"  href="./asterisk.html" th:text="查询用户信息">用户信息</a>
 
-        <!--<a  th:href="@{/user/{type}}"  href="../user/userInfo.html" th:text="查询特定用户信息">特定用户信息</a>-->
+        <a  th:href="@{/user/{type}(type=${type})}"  href="../user/userInfo.html" th:text="查询特定用户信息">特定用户信息</a>
 
     </div>
 </body>
