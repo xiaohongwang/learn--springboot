@@ -13,7 +13,7 @@ public class UtestController {
 
     @RequestMapping("/test")
     public String test(Model model){
-        model.addAttribute("url","<a th:href=/user/list>第一个链接</a>");
+        model.addAttribute("url","<a th:href=\"@{/user/list}\" th:text=\"查询用户列表\">查询</a>");
         return "thymeleaf-learn/utext";
     }
 }
