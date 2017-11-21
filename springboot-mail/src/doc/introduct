@@ -1,0 +1,6 @@
+1、pom包配置
+     <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-mail</artifactId>
+     </dependency>
+2、

@@ -1,0 +1,18 @@
+server:
+  port: 8093
+  context-path: /
+spring:
+  mail:
+    host: smtp.163.com
+    username: xxx@163.com
+    password: xxx
+    default-encoding: utf-8
+  thymeleaf:
+    suffix: .html
+    prefix: classpath:/pages/
+mail:
+  fromMail:
+    addr: xxx@163.com
+
+
+
