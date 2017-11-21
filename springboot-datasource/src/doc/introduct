@@ -1,0 +1,6 @@
+1、Spring Boot项目启动
+    java -jar XXX.jar
+
+    (1)、将项目打包为jar，pom.xml文件中<packaging>jar</packaging>
+    (2)、clean package
+    (3)、在cmd命令行进入jar所在文件，运行java  -jar  XXX.jar
