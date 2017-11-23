@@ -1,0 +1,24 @@
+server:
+  port: 8093
+  context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///springboottest2
+    username: root
+    password: root
+#redis:
+#    host: 192.168.26.133
+#    port: 6379
+#    password:
+#    maxIdle: 50
+#    minIdle: 0
+#    maxTotal: 500
+
+cluster:
+  nodes: 192.168.26.136:6379,192.168.26.136:6380,192.168.26.136:6381,192.168.26.136:6382,192.168.26.136:6383,192.168.26.136:6384
+  commandTimeout: 5
+  expireSeconds: 120
+
+
+
