@@ -1,6 +1,8 @@
 package com.springboot.mybatisConfig;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,6 +23,8 @@ import java.io.IOException;
 @Import(DataSourceConfig.class)
 public class SqlSessionFactoryConfig {
 
+    private Logger logger  = LoggerFactory.getLogger(SqlSessionFactoryConfig.class);
+
     private static final String MAPPER_LOCATION = "/mapper/*.xml";
 
     @Resource
@@ -34,7 +38,7 @@ public class SqlSessionFactoryConfig {
         /** 添加mapper 扫描路径 */
         PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
         String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + MAPPER_LOCATION;
-        System.err.println(packageSearchPath);//classpath*:classpath:/mapper/*.xml
+        logger.info(packageSearchPath);
         sqlSessionFactoryBean.setMapperLocations(pathMatchingResourcePatternResolver.getResources(packageSearchPath));
         return sqlSessionFactoryBean;
     }
