@@ -99,6 +99,10 @@ public class SysUser {
 
     @Override
     public String toString() {
-        return "id:" + id + " userName:" + userName + " age:" + userAge;
+        return "SysUser{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userAge='" + userAge + '\'' +
+                '}';
     }
 }

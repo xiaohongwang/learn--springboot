@@ -22,11 +22,11 @@ public class SysUserServiceTest {
 
     @Test
     public void test1(){
-        DatabaseContextHolder.setDataSourceType("datasource1");
+//        DatabaseContextHolder.setDataSourceType("datasource1");
 
         System.out.println(sysUserService.findUserById(4));
 
-        DatabaseContextHolder.setDataSourceType("datasource2");
+//        DatabaseContextHolder.setDataSourceType("datasource2");
 
         System.out.println(sysUserService.findUserById(1));
     }

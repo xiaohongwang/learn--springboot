@@ -1,5 +1,6 @@
 package com.springboot.service.impl;
 
+import com.springboot.annotations.DynamicSwitchDataSource;
 import com.springboot.mapper.SysUserMapper;
 import com.springboot.model.SysUser;
 import com.springboot.service.SysUserService;
@@ -17,6 +18,7 @@ public class SysUserServiceImpl implements SysUserService {
     private SysUserMapper sysUserMapper;
 
     @Override
+    @DynamicSwitchDataSource(dataSource = "datasource2")
     public SysUser findUserById(Integer userId) {
         return sysUserMapper.selectByPrimaryKey(userId);
     }
