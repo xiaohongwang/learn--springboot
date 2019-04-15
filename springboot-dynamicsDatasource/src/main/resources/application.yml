@@ -5,13 +5,13 @@ datasource1:
   driver-class-name: com.mysql.cj.jdbc.Driver
   url: jdbc:mysql://127.0.0.1:3306/springboottest
   username: root
-  password: root
+  password: xiaohong810001
   type: com.zaxxer.hikari.HikariDataSource
 datasource2:
   driver-class-name: com.mysql.cj.jdbc.Driver
   url: jdbc:mysql://127.0.0.1:3306/springboot
   username: root
-  password: root
+  password: xiaohong810001
   type: com.zaxxer.hikari.HikariDataSource
 
 
@@ -20,3 +20,9 @@ spring:
   aop:
     auto: true #
     proxy-target-class: true
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  pageSizeZero: true
+#  params: count=countSql

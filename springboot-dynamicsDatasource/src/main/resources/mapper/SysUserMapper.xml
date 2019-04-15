@@ -100,4 +100,8 @@
       user_age = #{userAge,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from sys_user
+  </select>
 </mapper>
