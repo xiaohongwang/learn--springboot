@@ -1,6 +1,8 @@
 package com.springboot.service;
 
+import com.springboot.bean.DeptUser;
 import com.springboot.model.SysUser;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -23,4 +25,29 @@ public interface SysUserService {
      * @return
      */
     List<SysUser> findUserList(Integer currentPage, Integer pageSize);
+
+
+    /**
+    * @Title:findUserList
+    * @Description: 测试mybayis分页 rowBound
+    * @author: wangxiaohong
+    * @param: [rowBounds]
+    * @return java.util.List<com.springboot.model.SysUser>
+    * @date: 10:34 2019-12-13
+    * @version v1.0
+    */
+    List<SysUser> findUserList(RowBounds rowBounds);
+
+    List<DeptUser> findDeptUser();
+
+    /**
+    * @Title:insertData
+    * @Description: 插入数据信息
+    * @author: wangxiaohong
+    * @param: []
+    * @return void
+    * @date: 11:05 2019-12-16
+    * @version v1.0
+    */
+    void lazyLoad();
 }

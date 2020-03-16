@@ -21,7 +21,7 @@ public class PageHelperConfig {
         Properties properties = new Properties();
         properties.setProperty("offsetAsPageNum","true");//多余的数据是否作为新的页
         properties.setProperty("rowBoundsWithCount","true");//读取总数
-        properties.setProperty("reasonable","true");
+        properties.setProperty("reasonable","true"); // null值合理化处理
         properties.setProperty("dialect","mysql");    //配置mysql数据库的方言
         pageHelper.setProperties(properties);
         return pageHelper;
