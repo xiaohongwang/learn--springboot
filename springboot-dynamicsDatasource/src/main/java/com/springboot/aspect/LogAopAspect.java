@@ -29,7 +29,7 @@ public class LogAopAspect extends InjectionBase{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogAopAspect.class);
 
-	@Pointcut("execution(* com.springboot.controller.*.*(..))")
+	@Pointcut("@annotation(com.springboot.annotations.LogAnno)")
 	public void pointcut(){}
 
 

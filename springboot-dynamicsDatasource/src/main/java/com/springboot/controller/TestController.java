@@ -7,10 +7,12 @@ import com.springboot.bean.ResponseBean;
 import com.springboot.bean.ResponseEnum;
 import com.springboot.model.SysUser;
 import com.springboot.service.SysUserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -33,6 +35,7 @@ public class TestController {
     @Resource
     private SysUserService sysUserService;
 
+    @ApiOperation(value = "多数据源切换", notes = "测试多数元切换", httpMethod = "POST")
     @LogAnno(operateModule = "测试多数元切换",
             operateContent = "changeDataSource", operateMethod = "changeDataSource")
     @RequestMapping("changeDataSource")
@@ -40,8 +43,18 @@ public class TestController {
         return sysUserService.findUserById(3);
     }
 
+
+
+    @ApiOperation(value = "分页", notes = "测试分页插件", httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currentPage", value = "当前页码", required = true, dataType = "integer"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true, dataType = "integer")
+
+    }
+    )
     @RequestMapping("testPageHelper")
-    public ResponseBean testPageHelper(Integer currentPage, Integer pageSize){
+    public ResponseBean testPageHelper(
+            Integer currentPage, Integer pageSize){
         List<SysUser> userList = sysUserService.findUserList(currentPage, pageSize);
         ResponseBean responseBean = new ResponseBean(ResponseEnum.SUCCESS.getCode(),
                 ResponseEnum.SUCCESS.getMessage());

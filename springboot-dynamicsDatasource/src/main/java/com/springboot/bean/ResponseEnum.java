@@ -1,7 +1,7 @@
 package com.springboot.bean;
 
 /**
- * @Description:
+ * @Description: 响应码
  * @Author: wangxh
  * @Date: 2019-04-11 18:09
  */
