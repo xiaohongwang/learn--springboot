@@ -1,6 +1,7 @@
 package com.springboot.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;

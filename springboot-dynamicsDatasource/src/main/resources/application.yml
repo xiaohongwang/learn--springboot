@@ -19,6 +19,12 @@ spring:
   aop:
     auto: true #
     proxy-target-class: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mobile
+      username: mobile
+      password: mobilemk2018
+
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true

@@ -1,3 +1,5 @@
+### springfox  http://springfox.github.io/springfox/
+
 ### 1、swagger2 ==  springfox-swagger == swagger和spring框架结合
 
 #####  1、springBoot整合springfox-swagger
@@ -133,7 +135,8 @@
   |value|接口描述|
   |notes|接口详细介绍|
   |httpMethod|接口请求方式|
-  |produces|请求头 举例 application/json|
+  |produces|响应头 举例 application/json|
+  |consumes|请求头 举例 application/json|
   
   ```
       @ApiOperation(value = "多数据源切换", notes = "测试多数元切换", httpMethod = "POST")
